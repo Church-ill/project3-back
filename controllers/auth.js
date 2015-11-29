@@ -15,10 +15,15 @@ module.exports = {
         }
     },
     login : {
-        post : passport.authenticate('local', { // first parameter is 'local', second parameter is options
-            successRedirect : '/', // Edit these for redirection
-            failureRedirect : '/'
-        })
+        post : function(req, res, next){
+        passport.authenticate('local'); // first parameter is 'local', second parameter is options
+            // successRedirect : '/', // Edit these for redirection
+            // failureRedirect : '/'
+            res.sendStatus(200);
+            res.send(req.user);
+            next();
+        }
+        //{successFlash: "success"})
     },
     logout : {
         all : function(req, res, next) {

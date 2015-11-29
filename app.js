@@ -26,10 +26,10 @@ app.use(session({
   resave : false,
   saveUninitialized : false,
   store : new MongoStore({
-    url : "mongodb://localhost/ga-passport-sessions"
+    url : "mongodb://localhost/proj3-sessions"
   }),
   cookie : {
-    maxAge : 300000 // 5 minutes
+    maxAge : 900000 // 15 minutes
   },
   genid : function() {
     return uuid.v4({

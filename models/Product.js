@@ -1,7 +1,6 @@
 'use strict';
 
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/proj3');
 
 var productSchema = new mongoose.Schema({
 

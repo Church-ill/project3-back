@@ -39,10 +39,10 @@ var create = function (req, res, next) {
 };
 
 var update = function (req, res, next) {
-  // Transaction.findByIdAndUpdate(req.params.id, { $set: modify }, { new: true }).exec().then(function(trans) {
-  //   //console.log(person.toJSON());
-  // })
-  // .catch(console.error)
+  Transaction.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }).exec().then(function(trans) {
+    res.json(trans);
+  })
+  .catch(console.error)
 };
 
 module.exports = {

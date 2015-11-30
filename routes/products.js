@@ -6,6 +6,6 @@ var pCntrl = require('../controllers/product');
 //   res.json('Product');
 // );
 router.get('/', pCntrl.index);
-
+router.get('/:id', pCntrl.show);
 
 module.exports = router;

@@ -9,11 +9,17 @@ var index = function (req, res, next) {
   Product.find({}).exec().then(function (products) {
     res.json(products);
   }).catch(function(error){
-    next(error)});
+    next(error);
+  });
 };
 
 var show = function (req, res, next) {
-
+  Product.find({"_id": req.params.id}).exec()
+  .then(function(product){
+    res.json(product);
+  }).catch(function(error){
+    next(error);
+  });
 };
 
 var create = function (req, res, next) {
@@ -21,5 +27,6 @@ var create = function (req, res, next) {
 };
 
 module.exports = {
-  index
+  index,
+  show
 };

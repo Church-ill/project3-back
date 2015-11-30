@@ -1,12 +1,13 @@
 'use strict';
 
+var mongoose = require('mongoose');
 var Product = require('../models/Product');
-
-var db = require('../lib/db');
+mongoose.Promise = global.Promise;
+module.exports = mongoose.connection;
 
 var index = function (req, res, next) {
-  Product.find().exec().then(function (products) {
-    db.close();
+  Product.find({}).exec().then(function (products) {
+    res.json(products);
   }).catch(function(error){
     next(error)});
 };

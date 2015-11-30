@@ -16,17 +16,20 @@ var transactionSchema = new mongoose.Schema({
 
   status: {
            type: String,
-           required: true
+           required: true,
+           enum: { values: ['viewed', 'cart', 'checkout', 'purchased'] }
           },
 
   qty: {
         type: Number,
         required: true
         },
-
-  date: Date
-
-});
+},
+  { timestamps: true,
+    toObject: { virtuals: true}, //methods on document
+    toJSON: {virtuals: true}
+  }
+);
 
 // Model
 var Transaction = mongoose.model( 'Transaction', transactionSchema);

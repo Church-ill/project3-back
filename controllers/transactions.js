@@ -23,11 +23,24 @@ var show = function (req, res, next) {
 };
 
 var create = function (req, res, next) {
-
+  Transaction.create({
+    user_id: req.body.user_id,
+    product_id: req.body.product_id,
+    status: req.body.status,
+    qty: req.body.qty
+  }).then(function(trans){
+    res.json(trans);
+  })
+  .catch(function(error){
+    next(error);
+  });
 };
 
 var update = function (req, res, next) {
-
+  // Transaction.findByIdAndUpdate(req.params.id, { $set: modify }, { new: true }).exec().then(function(trans) {
+  //   //console.log(person.toJSON());
+  // })
+  // .catch(console.error)
 };
 
 module.exports = {

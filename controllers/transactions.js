@@ -47,6 +47,12 @@ var create = function (req, res, next) {
       "product_desc": prod.desc,
       "product_price": prod.price
     })
+    })
+  .then(function(){
+    Transaction.find(
+      {"user_id": req.user.id,
+       "status": 'cart'
+      }).exec()
   .then(function(trans){
     console.log(trans);
     res.json({trans});

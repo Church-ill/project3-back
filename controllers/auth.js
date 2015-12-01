@@ -15,20 +15,17 @@ module.exports = {
         }
     },
     login : {
-        post : function(req, res, next){
-        passport.authenticate('local'); // first parameter is 'local', second parameter is options
-            // successRedirect : '/', // Edit these for redirection
-            // failureRedirect : '/'
+        post : passport.authenticate('local'),
+        all : function(req, res) {
             res.sendStatus(200);
-            res.send(req.user);
-            next();
         }
-        //{successFlash: "success"})
     },
     logout : {
         all : function(req, res, next) {
+            console.log(req.user);
             if(!req.user) { // This is a great way to check if user is logged in.
                 var err = new Error("Log in first.");
+                console.log('inside if yo');
                 return next(err);
             }
 

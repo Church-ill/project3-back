@@ -26,7 +26,7 @@ var create = function (req, res, next) {
   // console.log(req.get('Content-Type'));
   // res.json(req.body.user_id);
   Transaction.create({
-    "user_id": req.body.user_id,
+    "user_id": req.user.id,
     "product_id": req.body.product_id,
     "status": req.body.status,
     "qty": req.body.qty

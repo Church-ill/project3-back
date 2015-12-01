@@ -14,6 +14,10 @@ var transactionSchema = new mongoose.Schema({
           required: true
          },
 
+  product_name: String,
+  product_desc: String,
+  product_price: Number,
+
   status: {
            type: String,
            required: true,

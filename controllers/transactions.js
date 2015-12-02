@@ -15,9 +15,9 @@ var index = function (req, res, next) {
 };
 
 var show = function (req, res, next) {
-  Transaction.find({"_id": req.params.id}).exec()
+  Transaction.find({"user_id": req.user.id, "status": "cart"}).exec()
   .then(function(trans){
-    res.json(trans);
+    res.json({trans});
   }).catch(function(error){
     next(error);
   });

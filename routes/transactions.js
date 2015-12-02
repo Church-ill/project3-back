@@ -4,7 +4,7 @@ var router = express.Router();
 var tCntrl = require('../controllers/transactions');
 
 
-router.get('/', tCntrl.index);
+router.get('/', tCntrl.show);
 router.get('/:id', tCntrl.show);
 router.post('/', tCntrl.create);
 router.patch('/:id', tCntrl.update);

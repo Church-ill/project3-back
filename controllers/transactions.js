@@ -46,7 +46,7 @@ var create = function (req, res, next) {
       "product_name": prod.name,
       "product_desc": prod.desc,
       "product_price": prod.price
-    })
+    });
     })
   .then(function(){
     Transaction.find(
@@ -58,7 +58,7 @@ var create = function (req, res, next) {
     res.json({trans});
   }).catch(function(error){
     next(error);
-  })
+  });
   });
 };
 
@@ -69,9 +69,21 @@ var update = function (req, res, next) {
   .catch(console.error);
 };
 
+var destroy = function (req, res, next) {
+  Transaction.findByIdAndRemove(req.params.id).exec()
+  .then(function() {
+    res.json('Succesfully Deleted');
+  })
+  .catch(function(error) {
+    next(error);
+  });
+};
+
+
 module.exports = {
   index,
   show,
   create,
-  update
+  update,
+  destroy
 };

@@ -21,7 +21,7 @@ var transactionSchema = new mongoose.Schema({
   status: {
            type: String,
            required: true,
-           enum: { values: ['viewed', 'cart', 'checkout', 'purchased'] }
+           enum: { values: ['viewed', 'cart', 'checkout', 'purchased', 'abandoned'] }
           },
 
   qty: {

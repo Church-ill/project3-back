@@ -11,15 +11,22 @@ var productSchema = new mongoose.Schema({
 
   desc: String,
 
-  price: {
-          type: Number,
+  size: {
+          type: String,
           required: true
          },
 
-  number: {
+  price: {
            type: Number,
            required: true
-          }
+          },
+
+  number: Number,
+
+  clicks: Number,
+
+  url: String
+
 });
 
 // Model

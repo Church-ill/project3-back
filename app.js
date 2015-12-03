@@ -16,11 +16,12 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 var transactions = require('./routes/transactions');
+var charges = require('./routes/charges');
 
 var app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5000'],
+  origin: ['http://localhost:5000', 'http://church-ill.github.io'],
   credentials: true
 }));
 
@@ -56,6 +57,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/products', products);
 app.use('/transactions', transactions);
+app.use('/charge', charges);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

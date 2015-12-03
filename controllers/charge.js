@@ -6,23 +6,29 @@ var stripe = require("stripe")(process.env.STRIPE_SECRET);
 // (Assuming you're using express - expressjs.com)
 // Get the credit card details submitted by the form
 var charge = function (req, res, next) {
-  var stripeToken = req.body.stripeToken;
+  console.log('REQUEST STRIPE');
+  console.log(req.body.amount);
+  console.log(req.body.token);
+  // var stripeToken = req.body.token;
   stripe.charges.create({
-    amount: 1000, // amount in cents, again
+    amount: req.body.amount*100, // amount in cents, again
     currency: "usd",
-    source: stripeToken,
+    source: req.body.token,
     description: "Example charge"
-  }, function(err, charge) {
+  },
+    function(err, charge) {
       if (err && err.type === 'StripeCardError') {
       // The card has been declined
       }
-    }
-  // }).then(function(){
+      else {
+        res.sendStatus(200);
+      }
+    });
+  // ).exec().then(function(){
   //   res.sendStatus(200);
   // }).catch(function(error) {
   //   next(error)
   // })
-  )
 };
 
 module.exports = charge;

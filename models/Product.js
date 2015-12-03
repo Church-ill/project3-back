@@ -23,7 +23,10 @@ var productSchema = new mongoose.Schema({
 
   number: Number,
 
-  clicks: Number,
+  clicks: {
+           type: Number,
+           default: 0
+          },
 
   url: String
 

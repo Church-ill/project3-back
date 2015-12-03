@@ -12,7 +12,15 @@ var index = function (req, res, next) {
     }).catch(function(error){
       next(error);
     });
-  }else{
+  }
+  else if (req.query.c){
+    Product.find({}).where('clicks').gt(0).sort('-clicks').exec().then(function (products) {
+      res.json(products);
+    }).catch(function(error){
+      next(error);
+    });
+  }
+  else {
     Product.find({}).exec().then(function (products) {
       res.json(products);
     }).catch(function(error){
@@ -30,20 +38,21 @@ var show = function (req, res, next) {
   });
 };
 
-// var search = function (req, res, next) {
-//   console.log("made it to search controller");
-//   Product.find({"name": req.params.id}).exec().then(function (products) {
-//     res.json(products);
-//   }).catch(function(error){
-//     next(error);
-//   });
-// };
-
 var create = function (req, res, next) {
+};
 
+var update = function (req, res, next) {
+  if (req.query.click) {
+    Product.findByIdAndUpdate(req.params.id, { $inc: {clicks: 1} }, { new: true }).exec().then(function(trans) {
+      res.json(trans.clicks);
+    })
+    .catch(console.error);
+  }
 };
 
 module.exports = {
   index,
-  show
+  show,
+  create,
+  update
 };

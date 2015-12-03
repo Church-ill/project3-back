@@ -35,7 +35,8 @@ app.use(session({
   resave : false,
   saveUninitialized : false,
   store : new MongoStore({
-    url : "mongodb://localhost/proj3-sessions"
+    //url : "mongodb://localhost/proj3-sessions"
+    url : process.env.MONGOLAB_URI
   }),
   cookie : {
     maxAge : 900000 // 15 minutes

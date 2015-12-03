@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var authCtrl = require('../controllers/auth');
 
+
 /* GET home page. */
 router.get('/', authCtrl.root.get);
 
